@@ -1,3 +1,6 @@
+def __str__(self):
+        return f"Application ID: {self.application_id}, Name: {self.name}, Version: {self.version}"
+
 for application in applications:
     # Accessing attributes of each object
     application_id = application.id
