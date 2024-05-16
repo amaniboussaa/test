@@ -1,3 +1,10 @@
+for application in applications:
+    # Accessing attributes of each object
+    application_id = application.id
+    application_status = application.status
+    
+    # Printing the values
+    print(f"ID: {application_id}, Status: {application_status}")
 client = Elasticsearch(
   "",
     api_key="",
