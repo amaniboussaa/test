@@ -1,3 +1,14 @@
+client = Elasticsearch(
+  "",
+    api_key="",
+    ssl_assert_fingerprint=(
+        ""
+    )
+
+)
+
+# API key should have cluster monitor rights
+print(client.info())
 
 #elasticsearch_settings.py
 import os
