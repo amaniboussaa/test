@@ -1,3 +1,25 @@
+
+#Readme :
+# Project Name
+
+## Description
+
+Briefly describe your project here, including its purpose and main features.
+
+## Installation
+
+To install the required dependencies, run:
+
+```bash
+pip install -r requirements.txt
+
+#requirements.txt
+# Used for making HTTP requests
+requests==2.26.0
+
+# The official Elasticsearch client for Python
+elasticsearch==7.15.1
+
 ##api/client.py:
 
 import requests
