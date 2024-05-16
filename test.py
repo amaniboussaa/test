@@ -1,4 +1,41 @@
 
+#config/settings.py:
+import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+class Settings:
+    def __init__(self):
+        # API URLs
+        self.app_url = os.getenv('APP_URL')
+        self.env_url = os.getenv('ENV_URL')
+
+        # Elasticsearch
+        self.es_host = os.getenv('ES_HOST')
+#from config.settings import Settings
+from api.client import APIClient
+from data.manager import DataManager
+from elasticsearch.indexer import ElasticsearchIndexer
+from utils.helpers import setup_logger
+
+def main():
+    setup_logger()
+
+    settings = Settings()
+
+    api_client = APIClient(settings.app_url, settings.env_url)
+    data_manager = DataManager(api_client)
+    applications = data_manager.fetch_data()
+
+    es_indexer = ElasticsearchIndexer(settings.es_host)
+    es_indexer.index_applications(applications)
+
+if __name__ == "__main__":
+    main()
+
+
 #Readme :
 # Project Name
 
