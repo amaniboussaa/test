@@ -1,4 +1,45 @@
 
+#elasticsearch_settings.py
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+class ElasticsearchSettings:
+    def __init__(self):
+        try:
+            # Elasticsearch
+            self.es_host = os.environ['ES_HOST']
+            self.api_key = os.environ['ES_API_KEY']
+        except KeyError as e:
+            raise KeyError(f"Missing environment variable: {e}")
+
+        if not self.es_host:
+            raise ValueError("ES_HOST is not specified in the environment variables.")
+#.env 
+ES_HOST=http://localhost:9200
+ES_API_KEY=your_api_key_here
+
+
+# main
+from config.elasticsearch_settings import ElasticsearchSettings
+
+def main():
+    try:
+        settings = ElasticsearchSettings()
+        es_host = settings.es_host
+        api_key = settings.api_key
+
+        # Use es_host and api_key to connect to Elasticsearch
+        print("Elasticsearch host:", es_host)
+        print("API key:", api_key)
+
+    except (KeyError, ValueError) as e:
+        print(f"Error while loading Elasticsearch settings: {e}")
+
+if __name__ == "__main__":
+    main()
+
 #config/settings.py:
 import os
 from dotenv import load_dotenv
