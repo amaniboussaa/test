@@ -1,3 +1,33 @@
+def gendata():
+    actions = []
+    mywords = ['foo', 'bar', 'baz']
+    for word in mywords:
+        action = {
+            "_index": "mywords",
+            "_source": {
+                "word": word,
+            }
+        }
+        actions.append(action)
+    print(actions)
+
+    # Debug: Check if client is connected
+    try:
+        # Perform a simple health check request
+        health = client.cluster.health()
+        print("Cluster health:", health)
+        
+        # Perform the bulk insert operation
+        bulk(client, actions)
+        print("Data indexed successfully.")
+    except Exception as e:
+        print("An error occurred:", e)
+
+gendata()
+
+
+
+
 client = Elasticsearch(
   "https://192.168.139.143:9200/",
     api_key="Tnd6amJvOEJzN203ZWs4QTZoQks6dTRYSkRWQ0NTN2VtbDJOTVFBcFJRQQ==",
