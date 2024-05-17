@@ -1,3 +1,14 @@
+client = Elasticsearch(
+  "https://192.168.139.143:9200/",
+    api_key="Tnd6amJvOEJzN203ZWs4QTZoQks6dTRYSkRWQ0NTN2VtbDJOTVFBcFJRQQ==",
+    ssl_assert_fingerprint=(
+        "cf42e39ff08cdd31dca3f7b91d7b30b0cb7b675dfd2d16b77e7a42637dec2b42"
+    )
+
+)
+
+# API key should have cluster monitor rights
+print(client.info())
 def __str__(self):
         return f"Application ID: {self.application_id}, Name: {self.name}, Version: {self.version}"
 
