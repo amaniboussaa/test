@@ -1,3 +1,20 @@
+merged_data = {
+    "data": [
+        {**data_entries[i], "type": types[i]} for i in range(len(data_entries))
+    ]
+}
+
+# Resulting data structure
+result = {
+    "data": {
+        "types": types,
+        "data": merged_data
+    }
+}
+
+# Printing the merged data
+import json
+print(json.dumps(result, indent=4))
 def gendata():
     actions = []
     mywords = ['foo', 'bar', 'baz']
