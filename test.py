@@ -1,3 +1,22 @@
+from datetime import datetime, timezone
+
+def timestamp_to_iso(timestamp_ms):
+    # Convertir le timestamp en secondes
+    timestamp_s = timestamp_ms / 1000.0
+
+    # Créer un objet datetime à partir du timestamp
+    dt = datetime.fromtimestamp(timestamp_s, tz=timezone.utc)
+
+    # Convertir l'objet datetime en chaîne ISO 8601
+    return dt.isoformat()
+
+# Exemple d'utilisation
+timestamp_ms = 1575556630465
+iso_format = timestamp_to_iso(timestamp_ms)
+print(iso_format)
+
+
+
 merged_data = {
     "data": [
         {**data_entries[i], "type": types[i]} for i in range(len(data_entries))
