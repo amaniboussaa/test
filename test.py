@@ -1,3 +1,35 @@
+import requests
+
+# Base URL of the API
+url = "https://api.example.com/data"
+
+# Initialize the parameters for the first request
+params = {"from": 0}
+all_data = []
+
+while True:
+    # Make the request to the API
+    response = requests.post(url, json=params)
+    response_data = response.json()
+    
+    # Append the data from this response to our list
+    all_data.extend(response_data['data'])  # assuming the data is in a key called 'data'
+    
+    # Extract pagination information
+    total_results = response_data['totalResults']
+    from_value = response_data['from']
+    to_value = response_data['to']
+    
+    # Check if we have fetched all the results
+    if to_value >= total_results:
+        break
+    
+    # Update the 'from' parameter for the next request
+    params['from'] = to_value
+
+# At this point, all_data contains all the paginated data
+print("Fetched all data:", all_data)
+
 from datetime import datetime, timezone
 
 def timestamp_to_iso(timestamp_ms):
