@@ -1,5 +1,55 @@
 import json
 import os
+import logging
+
+def setup_logger(name, level=logging.DEBUG):
+    """
+    Set up a logger with the specified name and level.
+
+    Parameters:
+    - name (str): The name of the logger.
+    - level (int): The logging level.
+
+    Returns:
+    - Logger: Configured logger.
+    """
+    logger = logging.getLogger(name)
+    if not logger.hasHandlers():
+        handler = logging.StreamHandler()
+        formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
+        handler.setFormatter(formatter)
+        logger.addHandler(handler)
+        logger.setLevel(level)
+    return logger
+
+def load_config(config_path='config.json'):
+    """
+    Load the configuration from a JSON file.
+
+    Parameters:
+    - config_path (str): The path to the config file. Default is 'config.json'.
+
+    Returns:
+    - dict: A dictionary containing the configuration.
+    """
+    logger = setup_logger(__name__)
+
+    if not os.path.exists(config_path):
+        logger.error(f"The file {config_path} was not found.")
+        raise FileNotFoundError(f"Error: The file {config_path} was not found.")
+
+    try:
+        with open(config_path, 'r') as config_file:
+            config = json.load(config_file)
+            logger.info(f"Configuration loaded successfully from {config_path}")
+    except json.JSONDecodeError as e:
+        logger.error(f"The file {config_path} is not a valid JSON: {e}")
+        raise ValueError(f"Error: The file {config_path} is not a valid JSON.")
+
+    return config
+
+import json
+import os
 
 def load_config(config_path='config.json'):
     """
