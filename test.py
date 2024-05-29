@@ -1,3 +1,27 @@
+import json
+import os
+
+def load_config(config_path='config.json'):
+    """
+    Load the configuration from a JSON file.
+
+    Parameters:
+    - config_path (str): The path to the config file. Default is 'config.json'.
+
+    Returns:
+    - dict: A dictionary containing the configuration.
+    """
+    if not os.path.exists(config_path):
+        raise FileNotFoundError(f"Error: The file {config_path} was not found.")
+
+    try:
+        with open(config_path, 'r') as config_file:
+            config = json.load(config_file)
+    except json.JSONDecodeError:
+        raise ValueError(f"Error: The file {config_path} is not a valid JSON.")
+
+    return config
+
 import requests
 
 def fetch_all_data(url):
