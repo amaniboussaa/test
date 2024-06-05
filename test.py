@@ -1,3 +1,10 @@
+# Save unused components to a JSON file
+with open('unused_components.json', 'w') as f:
+    json.dump(unused_components, f, indent=4)
+
+
+
+
 def used = false;
 
 for (item in params['_source']['nodetype']) {
