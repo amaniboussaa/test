@@ -1,3 +1,16 @@
+
+{
+  "query": {
+    "bool": {
+      "should": [
+        { "exists": { "field": "nodetype.component_id" } },
+        { "exists": { "field": "relationtype.component_id" } }
+      ]
+    }
+  }
+}
+
+
 import json
 import os
 import logging
