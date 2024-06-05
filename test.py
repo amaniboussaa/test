@@ -1,3 +1,8 @@
+# Update components based on used_component_ids
+for component in components:
+    component.update_used_status(used_component_ids)
+
+
 def update_used_status(self, used_component_ids):
         if self.element_id in used_component_ids:
             for version in self.versions:
