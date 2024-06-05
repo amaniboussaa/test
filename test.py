@@ -1,3 +1,12 @@
+# Update components to set used field to true
+for component_id in used_component_ids:
+    es.update(
+        index="components",
+        id=component_id,
+        body={"doc": {"used": True}}
+    )
+
+
 # Extract all component IDs
 all_components = {component["component_id"]: component for component in components_data}
 
