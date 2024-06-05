@@ -1,3 +1,16 @@
+ def get_used_versions(self):
+        return [version for version in self.versions if version['used']]
+
+    def get_unused_versions(self):
+        return [version for version in self.versions if not version['used']]
+
+    def __str__(self):
+        return f"Component ID: {self.element_id}, Type: {self.component_type}, Versions: {self.versions}"
+
+
+
+
+
 def set_version_used(self, version_id, used=True):
         for version in self.versions:
             if version['version_id'] == version_id:
