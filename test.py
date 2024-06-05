@@ -1,3 +1,19 @@
+def used = false;
+
+for (item in params['_source']['nodetype']) {
+  if (item['component_id'] == doc['component_id'].value) {
+    used = true;
+  }
+}
+
+for (item in params['_source']['relationtype']) {
+  if (item['component_id'] == doc['component_id'].value) {
+    used = true;
+  }
+}
+
+return used;
+
 
 {
   "query": {
