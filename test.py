@@ -1,4 +1,13 @@
- def get_used_versions(self):
+def update_used_status(self, used_component_ids):
+        if self.element_id in used_component_ids:
+            for version in self.versions:
+                version['used'] = True
+
+
+
+
+
+def get_used_versions(self):
         return [version for version in self.versions if version['used']]
 
     def get_unused_versions(self):
