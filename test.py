@@ -1,4 +1,16 @@
+def set_version_used(self, version_id, used=True):
+        for version in self.versions:
+            if version['version_id'] == version_id:
+                version['used'] = used
+                return
+        print(f"Version {version_id} not found.")
+
+
+
+
+
 # Update components to set used field to true
+
 for component_id in used_component_ids:
     es.update(
         index="components",
