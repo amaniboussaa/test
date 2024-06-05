@@ -1,3 +1,29 @@
+# Extract all component IDs
+all_components = {component["component_id"]: component for component in components_data}
+
+# Extract used component IDs from topologies
+used_component_ids = set()
+for topology in topologies_data:
+    for node in topology["topology"]["nodeTypes"]:
+        used_component_ids.add(node["component_element_id"])
+    for relation in topology["topology"]["relationTypes"]:
+        used_component_ids.add(relation["component_element_id"])
+
+# Determine unused components
+unused_component_ids = set(all_components.keys()) - used_component_ids
+
+# Prepare unused components data
+unused_components = [all_components[comp_id] for comp_id in unused_component_ids]
+
+# Save unused components to a JSON file
+with open('unused_components.json', 'w') as f:
+    json.dump(unused_components, f, indent=4)
+
+print(f"Unused components: {unused_components}")
+
+
+
+
 # Save unused components to a JSON file
 with open('unused_components.json', 'w') as f:
     json.dump(unused_components, f, indent=4)
