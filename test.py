@@ -11,6 +11,18 @@ for item in data:
             "used": version["used"]
         })
 
+# Index the data into Elasticsearch
+index_name = "your_index_name"
+actions = [
+    {
+        "_index": index_name,
+        "_source": doc
+    }
+    for doc in transformed_data
+]
+
+# Bulk index the transformed data
+helpers.bulk(es, actions)
 
 
 
