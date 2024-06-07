@@ -1,3 +1,19 @@
+# Transform the data
+transformed_data = []
+for item in data:
+    for version in item["versions"]:
+        transformed_data.append({
+            "component_id": item["component_id"].split(":")[0],
+            "type": item["type"],
+            "element_id": item["element_id"],
+            "version_id": version["id"],
+            "version": version["version"],
+            "used": version["used"]
+        })
+
+
+
+
 # Update components based on used_component_ids
 for component in components:
     component.update_used_status(used_component_ids)
