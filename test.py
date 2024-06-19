@@ -1,3 +1,5 @@
+self.enddate = enddate if enddate is not None else '1970-01-01T00:00:00Z'  # Valeur par défaut
+
 # Transform the data
 transformed_data = []
 for item in data:
