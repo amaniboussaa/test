@@ -1,3 +1,10 @@
+Nous avons établi un pipeline CI/CD avec Jenkins, où Jenkins récupère automatiquement le code Python depuis notre référentiel GitHub. Ensuite, il construit une image Docker du script Python associé, et la pousse vers notre registre Docker centralisé, assurant ainsi une gestion efficace et sécurisée de nos conteneurs.
+
+Pour garantir la sécurité des informations sensibles, nous utilisons Vault. Vault stocke et gère de manière sécurisée tous les secrets nécessaires à nos opérations, assurant une conformité stricte et une protection adéquate des données.
+
+En parallèle, Kubernetes orchestre nos conteneurs Docker. Nous avons configuré un pod CronJob dans Kubernetes, spécifiquement pour notre application. Ce pod CronJob est responsable de l'injection régulière des données depuis A4C (Application for Cloud) vers Elasticsearch, notre moteur de recherche et d'analyse des données.
+
+Enfin, pour visualiser et analyser ces données de manière intuitive, nous utilisons Kibana. Kibana nous permet de créer des tableaux de bord interactifs à partir des données stockées dans Elasticsearch, offrant ainsi une visibilité en temps réel sur les performances et l'utilisation de notre plateforme.
 Pourquoi afficher les types de nodes les plus utilisés :
 
 Bénéfice : Connaître les types de nodes les plus utilisés permet d'optimiser les ressources et de mieux comprendre les besoins en infrastructure. Par exemple, si certains types de nodes sont surutilisés, cela peut indiquer une nécessité d'augmenter les capacités ou d'optimiser les configurations pour ces types spécifiques.
