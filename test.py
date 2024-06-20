@@ -1,3 +1,7 @@
+Pourquoi afficher les types de nodes les plus utilisés :
+
+Bénéfice : Connaître les types de nodes les plus utilisés permet d'optimiser les ressources et de mieux comprendre les besoins en infrastructure. Par exemple, si certains types de nodes sont surutilisés, cela peut indiquer une nécessité d'augmenter les capacités ou d'optimiser les configurations pour ces types spécifiques.
+
 2. Pie Chart : Types de nodes les plus utilisés
 Pourquoi :
 Identification des Ressources Clés : Cette visualisation montre quels types de nœuds (par exemple, compute, storage) sont les plus fréquemment utilisés. Cela permet de comprendre quelles ressources sont les plus demandées et de planifier en conséquence.
