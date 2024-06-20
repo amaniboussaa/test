@@ -1,3 +1,10 @@
+2. Pie Chart : Types de nodes les plus utilisés
+Pourquoi :
+Identification des Ressources Clés : Cette visualisation montre quels types de nœuds (par exemple, compute, storage) sont les plus fréquemment utilisés. Cela permet de comprendre quelles ressources sont les plus demandées et de planifier en conséquence.
+Gestion des Inventaires : Connaître les types de nœuds les plus utilisés aide à gérer les inventaires de ressources. Par exemple, si les nœuds de type compute sont les plus utilisés, il peut être nécessaire d'augmenter la capacité des serveurs de calcul.
+Planification des Capacités : En sachant quels types de nœuds sont les plus populaires, les équipes peuvent planifier les expansions futures et éviter les goulots d'étranglement.
+
+
 Pour une présentation structurée et captivante de votre projet Falcon, voici un guide slide par slide avec le contenu et les images à inclure :
 
 ### **Slide 1: Titre et Introduction**
