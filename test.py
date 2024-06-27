@@ -1,3 +1,64 @@
+pipeline {
+    agent any
+    parameters {
+        choice(name: 'ENVIRONMENT', choices: ['dev', 'prod'], description: 'Select the environment')
+    }
+    environment {
+        C_URL = ''
+    }
+    stages {
+        stage('Setup') {
+            steps {
+                script {
+                    if (params.ENVIRONMENT == 'dev') {
+                        env.C_URL = 'https://dev.example.com'
+                    } else if (params.ENVIRONMENT == 'prod') {
+                        env.C_URL = 'https://prod.example.com'
+                    }
+                }
+            }
+        }
+        stage('Build') {
+            steps {
+                echo "Building for environment: ${params.ENVIRONMENT}"
+                echo "C_URL is set to: ${env.C_URL}"
+                // Ajoutez ici les étapes de build nécessaires
+            }
+        }
+        stage('Trigger CD') {
+            steps {
+                build job: 'cd-job', parameters: [
+                    string(name: 'C_URL', value: env.C_URL),
+                    string(name: 'ENVIRONMENT', value: params.ENVIRONMENT)
+                ]
+            }
+        }
+    }
+}
+
+
+
+/**************/CD***************/
+pipeline {
+    agent any
+    parameters {
+        string(name: 'C_URL', defaultValue: '', description: 'The URL passed from CI')
+        string(name: 'ENVIRONMENT', defaultValue: 'dev', description: 'The environment (dev or prod)')
+    }
+    stages {
+        stage('Deploy') {
+            steps {
+                echo "Deploying to environment: ${params.ENVIRONMENT}"
+                echo "Using C_URL: ${params.C_URL}"
+                // Ajoutez ici les étapes de déploiement nécessaires
+            }
+        }
+    }
+}
+
+
+
+
 Nous avons établi un pipeline CI/CD avec Jenkins, où Jenkins récupère automatiquement le code Python depuis notre référentiel GitHub. Ensuite, il construit une image Docker du script Python associé, et la pousse vers notre registre Docker centralisé, assurant ainsi une gestion efficace et sécurisée de nos conteneurs.
 
 Pour garantir la sécurité des informations sensibles, nous utilisons Vault. Vault stocke et gère de manière sécurisée tous les secrets nécessaires à nos opérations, assurant une conformité stricte et une protection adéquate des données.
