@@ -1,3 +1,40 @@
+def process_app_ids_in_batches(app_ids, batch_size=50):
+    """
+    Traite les identifiants d'applications par lots de taille batch_size.
+
+    :param app_ids: Liste des identifiants d'applications.
+    :param batch_size: Taille du lot pour chaque appel de méthode.
+    """
+    def your_method(ids):
+        """
+        Méthode fictive qui traite un lot d'identifiants.
+        Remplacez cette méthode par votre logique réelle.
+        """
+        print(f"Appel de your_method avec {len(ids)} identifiants : {ids}")
+
+    batch = []
+
+    for i, app_id in enumerate(app_ids):
+        batch.append(app_id)
+
+        # Appeler la méthode tous les batch_size éléments
+        if (i + 1) % batch_size == 0:
+            your_method(batch)
+            batch = []  # Réinitialiser le lot
+
+    # Appeler la méthode pour les éléments restants si nécessaire
+    if batch:
+        your_method(batch)
+
+# Exemple d'utilisation
+app_ids = list(range(1, 105))  # Exemple d'identifiants d'application
+process_app_ids_in_batches(app_ids, batch_size=50)
+
+
+
+
+
+
 # Supposons que votre tableau d'identifiants d'applications s'appelle app_ids
 app_ids = [...]  # Remplissez ce tableau avec vos identifiants d'applications
 
