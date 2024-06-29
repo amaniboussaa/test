@@ -1,4 +1,17 @@
- for i in range(0, len(app_ids), batch_size):
+for i in range(0, len(app_ids), batch_size):
+            batch = app_ids[i:i + batch_size]
+            results = method(batch)
+
+            for app_id, result in zip(batch, results):
+                if app_id not in self.results:
+                    self.results[app_id] = []
+                self.results[app_id].append(result)
+
+
+
+
+
+for i in range(0, len(app_ids), batch_size):
             batch = app_ids[i:i + batch_size]
             batch_results = method(batch)
             results.append(batch_results)  # Ajouter les résultats du lot comme une sous-liste
