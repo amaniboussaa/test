@@ -1,3 +1,27 @@
+# Supposons que votre tableau d'identifiants d'applications s'appelle app_ids
+app_ids = [...]  # Remplissez ce tableau avec vos identifiants d'applications
+
+# Supposons que vous avez une méthode appelée your_method qui prend une liste d'identifiants
+def your_method(ids):
+    # Implémentation de votre méthode
+    print(f"Appel de your_method avec {len(ids)} identifiants")
+
+# Variable pour stocker les identifiants par lots
+batch = []
+
+# Parcourir les identifiants
+for i, app_id in enumerate(app_ids):
+    batch.append(app_id)
+    
+    # Appeler la méthode tous les 50 éléments
+    if (i + 1) % 50 == 0:
+        your_method(batch)
+        batch = []  # Réinitialiser le lot
+
+# Appeler la méthode pour les éléments restants si nécessaire
+if batch:
+    your_method(batch)
+
 pipeline {
     agent any
     parameters {
