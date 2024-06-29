@@ -1,3 +1,13 @@
+ for i in range(0, len(app_ids), batch_size):
+            batch = app_ids[i:i + batch_size]
+            batch_results = method(batch)
+            results.append(batch_results)  # Ajouter les résultats du lot comme une sous-liste
+
+        return results
+
+
+
+
 def process_app_ids_in_batches(app_ids, batch_size=50):
     """
     Traite les identifiants d'applications par lots de taille batch_size.
