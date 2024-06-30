@@ -1,3 +1,54 @@
+import requests
+import time
+
+def fetch_data_with_retries(url, max_retries=3, delay=2):
+    """
+    Fait une requête GET et réessaye en cas d'erreur ConnectionError avec le code d'erreur 10053.
+
+    :param url: URL de l'API à laquelle faire la requête GET.
+    :param max_retries: Nombre maximum de tentatives avant d'abandonner.
+    :param delay: Délai en secondes entre les tentatives.
+    :return: Les données JSON récupérées ou None si la requête a échoué.
+    """
+    retries = 0
+
+    while retries < max_retries:
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Lève une exception HTTPError pour les erreurs HTTP
+            return response.json()  # Supposons que la réponse est en JSON
+        except requests.exceptions.ConnectionError as conn_err:
+            if "10053" in str(conn_err):
+                print(f"Connection aborted error 10053 occurred: {conn_err}. Retrying in {delay} seconds...")
+                retries += 1
+                time.sleep(delay)  # Attendre avant de réessayer
+            else:
+                print(f"Other connection error occurred: {conn_err}")
+                return None
+        except requests.exceptions.HTTPError as http_err:
+            print(f"HTTP error occurred: {http_err}")
+            return None
+        except Exception as err:
+            print(f"Other error occurred: {err}")
+            return None
+
+    print("Max retries exceeded. Failed to fetch data.")
+    return None
+
+# Exemple d'utilisation
+url = "https://api.example.com/data"
+data = fetch_data_with_retries(url)
+if data:
+    print("Données récupérées avec succès:", data)
+else:
+    print("Échec de la récupération des données")
+
+
+
+
+
+
+
 for i in range(0, len(app_ids), batch_size):
             batch = app_ids[i:i + batch_size]
             results = method(batch)
