@@ -1,3 +1,27 @@
+def last_words_from_sentences(text):
+    # Split the input text by periods
+    sentences = text.split('.')
+    
+    # Initialize an empty list to store the last words
+    last_words = []
+    
+    # Iterate over each sentence
+    for sentence in sentences:
+        # Strip leading and trailing whitespace and split the sentence into words
+        words = sentence.strip().split()
+        # If the sentence is not empty, add the last word to the list
+        if words:
+            last_words.append(words[-1])
+    
+    return last_words
+
+# Example usage
+text = "This is the first sentence. Here is another one. And the last sentence."
+print(last_words_from_sentences(text))
+
+
+
+
 import requests
 import time
 
