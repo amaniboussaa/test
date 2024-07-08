@@ -1,3 +1,22 @@
+def last_word_after_last_period(text):
+    # Find the last occurrence of a period
+    last_period_index = text.rfind('.')
+    
+    # If there is no period, return the last word of the entire string
+    if last_period_index == -1:
+        return text.strip().split()[-1]
+    
+    # Get the substring after the last period and strip leading/trailing whitespace
+    last_sentence = text[last_period_index + 1:].strip()
+    
+    # Split the last sentence into words and return the last word
+    return last_sentence.split()[-1]
+
+# Example usage
+text = "This is the first sentence. Here is another one. And the last sentence."
+print(last_word_after_last_period(text))  # Output: "sentence"
+
+
 def last_words_from_sentences(text):
     # Split the input text by periods
     sentences = text.split('.')
