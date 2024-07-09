@@ -1,3 +1,21 @@
+seen_names = set()
+duplicate_names = set()
+
+for item in items:
+    name = item['name']
+    if name in seen_names:
+        duplicate_names.add(name)
+    else:
+        seen_names.add(name)
+
+if duplicate_names:
+    print(f"Duplicate names found: {duplicate_names}")
+else:
+    print("No duplicate names found.")
+
+
+
+
 def last_word_after_last_period(text):
     # Find the last occurrence of a period
     last_period_index = text.rfind('.')
