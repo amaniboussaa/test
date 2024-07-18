@@ -1,3 +1,41 @@
+
+from collections import defaultdict
+from datetime import datetime
+
+# Liste de déploiements
+deployments = [
+    {"app": "App1", "environment": "dev", "version": "v1", "date": "2023-07-10"},
+    {"app": "App1", "environment": "dev", "version": "v2", "date": "2023-07-15"},
+    {"app": "App1", "environment": "prod", "version": "v1", "date": "2023-07-12"},
+    {"app": "App2", "environment": "dev", "version": "v1", "date": "2023-07-13"},
+    {"app": "App2", "environment": "prod", "version": "v1", "date": "2023-07-16"},
+    {"app": "App2", "environment": "prod", "version": "v2", "date": "2023-07-18"}
+]
+
+# Convertir les dates de chaîne de caractères à objets datetime pour comparaison
+for deployment in deployments:
+    deployment["date"] = datetime.strptime(deployment["date"], "%Y-%m-%d")
+
+# Dictionnaire pour stocker le dernier déploiement par application et environnement
+last_deployments_dict = defaultdict(lambda: None)
+
+# Parcourir les déploiements et garder le plus récent pour chaque app et environnement
+for deployment in deployments:
+    key = (deployment["app"], deployment["environment"])
+    if last_deployments_dict[key] is None or deployment["date"] > last_deployments_dict[key]["date"]:
+        last_deployments_dict[key] = deployment
+
+# Extraire les résultats dans une liste
+last_deployments = list(last_deployments_dict.values())
+
+# Afficher les résultats
+for deployment in last_deployments:
+    print(deployment)
+
+
+
+
+
 import pandas as pd
 
 # Liste de déploiements
