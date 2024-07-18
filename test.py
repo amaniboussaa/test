@@ -1,3 +1,32 @@
+import pandas as pd
+
+# Liste de déploiements
+deployments = [
+    {"app": "App1", "environment": "dev", "version": "v1", "date": "2023-07-10"},
+    {"app": "App1", "environment": "dev", "version": "v2", "date": "2023-07-15"},
+    {"app": "App1", "environment": "prod", "version": "v1", "date": "2023-07-12"},
+    {"app": "App2", "environment": "dev", "version": "v1", "date": "2023-07-13"},
+    {"app": "App2", "environment": "prod", "version": "v1", "date": "2023-07-16"},
+    {"app": "App2", "environment": "prod", "version": "v2", "date": "2023-07-18"}
+]
+
+# Convertir les données en DataFrame
+df = pd.DataFrame(deployments)
+
+# Trier les données par application, environnement et date
+df_sorted = df.sort_values(by=['app', 'environment', 'date'], ascending=[True, True, False])
+
+# Garder le dernier déploiement pour chaque app et environnement
+last_deployments = df_sorted.drop_duplicates(subset=['app', 'environment'], keep='first')
+
+# Afficher les résultats
+print(last_deployments)
+
+
+
+
+
+
 seen_names = set()
 duplicate_names = set()
 
