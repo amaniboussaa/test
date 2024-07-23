@@ -1,3 +1,17 @@
+# Parcourir les environnements pour mettre à jour le statut des applications
+for env in environments:
+    for app in applications:
+        if app["name"] == env["app"]:
+            if env["status"] != "undeployed":
+                app["undeployed"] = False
+            app["has_env"] = True
+
+# Liste des applications qui sont 'undeployed' dans tous les environnements ou n'ont pas d'environnement associé
+result = [app for app in applications if app["undeployed"] or not app["has_env"]]
+
+# Afficher le résultat
+print(result)
+
 # Liste des applications
 applications = ["app1", "app2", "app3", "app4"]
 
