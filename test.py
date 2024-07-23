@@ -1,3 +1,39 @@
+# Liste des applications
+applications = ["app1", "app2", "app3", "app4"]
+
+# Liste des environnements avec les statuts
+environments = [
+    {"env": "env1", "app": "app1", "status": "deployed"},
+    {"env": "env1", "app": "app2", "status": "undeployed"},
+    {"env": "env2", "app": "app1", "status": "undeployed"},
+    {"env": "env2", "app": "app2", "status": "undeployed"},
+    {"env": "env2", "app": "app3", "status": "undeployed"},
+]
+
+# Dictionnaire pour suivre le statut des applications
+app_status = {app: {"undeployed": True, "has_env": False} for app in applications}
+
+# Parcourir les environnements pour mettre à jour le statut des applications
+for env in environments:
+    app = env["app"]
+    status = env["status"]
+    
+    # Mettre à jour le statut de l'application
+    if status != "undeployed":
+        app_status[app]["undeployed"] = False
+    
+    # Indiquer que l'application a un environnement associé
+    app_status[app]["has_env"] = True
+
+# Liste des applications qui sont 'undeployed' dans tous les environnements ou n'ont pas d'environnement associé
+result = [app for app, status in app_status.items() if status["undeployed"] or not status["has_env"]]
+
+# Afficher le résultat
+print(result)
+
+
+
+
 
 from collections import defaultdict
 from datetime import datetime
