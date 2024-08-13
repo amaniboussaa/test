@@ -1,3 +1,11 @@
+# Créer une liste filtrée en excluant les éléments présents dans archives2
+resultat = []
+for archive in archives1:
+    if (archive['name'], archive['version']) not in archives2_set:
+        resultat.append(archive)
+
+
+
 # Liste d'archives 1
 archives1 = [
     {'name': 'archive1', 'version': '1.0', 'size': 100, 'date': '2024-01-01'},
