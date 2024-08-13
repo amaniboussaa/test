@@ -1,3 +1,27 @@
+# Liste d'archives 1
+archives1 = [
+    {'name': 'archive1', 'version': '1.0', 'size': 100, 'date': '2024-01-01'},
+    {'name': 'archive2', 'version': '1.1', 'size': 150, 'date': '2024-01-02'},
+    {'name': 'archive3', 'version': '2.0', 'size': 200, 'date': '2024-01-03'}
+]
+
+# Liste d'archives 2 (avec d'autres attributs)
+archives2 = [
+    {'name': 'archive2', 'version': '1.1', 'size': 150, 'date': '2024-01-02', 'author': 'Alice'},
+    {'name': 'archive4', 'version': '1.0', 'size': 300, 'date': '2024-01-04', 'author': 'Bob'}
+]
+
+# Créer un ensemble de tuples (name, version) pour archives2 pour comparaison rapide
+archives2_set = {(a['name'], a['version']) for a in archives2}
+
+# Créer une liste filtrée en excluant les éléments présents dans archives2
+resultat = [archive for archive in archives1 if (archive['name'], archive['version']) not in archives2_set]
+
+print(resultat)
+
+
+
+
 # Parcourir les environnements pour mettre à jour le statut des applications
 for env in environments:
     for app in applications:
