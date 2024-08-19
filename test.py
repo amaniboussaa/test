@@ -1,3 +1,15 @@
+# Parcourir la première liste pour vérifier si chaque archive est utilisée
+for archive in all_archives:
+    # Vérifier si l'archive est présente dans la liste des archives utilisées
+    is_used = any(
+        used["archivename"] == archive["name"] and used["version"] == archive["version"]
+        for used in used_archives
+    )
+    
+    # Ajouter l'attribut 'is_used' à l'archive
+    archive["is_used"] = is_used
+
+
 # Créer une liste filtrée en excluant les éléments présents dans archives2
 resultat = []
 for archive in archives1:
